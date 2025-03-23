@@ -1,0 +1,6 @@
+# Ignorar chaves SSH e arquivos privados
+*.env
+*.pem
+*.key
+id_rsa
+id_dsa

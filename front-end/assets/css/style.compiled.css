@@ -1,0 +1,23 @@
+:root {
+  --primary-color: #D93654; /* Vermelho  */
+  --secondary-color: #F2F2F2; /* Bege */
+  --accent-color: #E69C3E; /* Amarelo */
+}
+
+/* Aplicando ao Bootstrap */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-secondary {
+  border-color: var(--secondary-color);
+}
+
+body, p, h1, h2, h3 {
+  font-family: "Outfit", sans-serif;
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
