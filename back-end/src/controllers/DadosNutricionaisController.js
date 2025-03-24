@@ -69,6 +69,7 @@ class DadosNutricionaisController {
         const nome = req.query.nome;
         try{
             const DadosNutricionais = await ModelDadosNutricionais.find({nome: nome});
+            console.log(DadosNutricionais);
             res.status(200).json(DadosNutricionais);    
         } catch(erro){
             res.status(500).json({message: '${erro.message} - falha ao buscar Dados Nutricionais pelo nome'});

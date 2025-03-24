@@ -57,7 +57,7 @@
                             </div>
                             <!--nestes elementos deve ser inserido a logica para buscar os dados do usuario para o nutricionista-->
                             <div class="col-md-10 offset-md-1">
-                                <div class="d-flex"><input class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-right: 4%;" name="name" placeholder="Name"><button class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-search">
+                                <div class="d-flex"><input id="nome-usuario-busca" class="form-control" type="text" style="margin-left: 0px;font-family: Roboto, sans-serif;margin-right: 4%;" name="name" placeholder="Name"><button id="botao-busca-dados-pelo-nome" class="btn btn-primary" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-search">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
                                             <path d="M21 21l-6 -6"></path>
@@ -76,7 +76,7 @@
                         <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
                             <div class="col">
                                 <div class="table-responsive" style="margin-right: 2%;margin-left: 2%;">
-                                    <table class="table" id="tabIngredientes">
+                                    <table class="table" id="tabela-dados-nutricionais-usuario">
                                         <thead>
                                             <tr>
                                                 <th>Informações</th>
@@ -109,10 +109,6 @@
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td>Pressão sanguínea</td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
                                                 <td>Glicose</td>
                                                 <td></td>
                                             </tr>
@@ -120,7 +116,34 @@
                                                 <td>Gordura (%)</td>
                                                 <td></td>
                                             </tr>
-                                            <tr></tr>
+                                            <tr>
+                                                <td>Fumante</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lactose</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Glúten</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Diabetes</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hipertensão</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vegetariano</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vegano</td>
+                                                <td></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -203,6 +226,7 @@
     <script src="assets/js/buttonstable.js"></script>
     <script src="assets/js/Dynamically-Add-Remove-Table-Row-style.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="buscarDadosNutricionais.js"></script>
 </body>
 
 </html>
