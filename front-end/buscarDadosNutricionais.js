@@ -1,4 +1,5 @@
 //o document ja exite sem declarar ou criar nada, o proprio navegador cria este objeto e ele fica disponivel globalmente para qualquer script
+//adicionar um Event Listener, com DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
     const inputNomeBusca = document.getElementById("nome-usuario-busca");
     const botaoBuscaDadosPeloNome = document.getElementById("botao-busca-dados-pelo-nome")

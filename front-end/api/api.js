@@ -1,0 +1,1 @@
+//aqui ficaram os codigos da api, onde sao feitas requisoes ao back-end para CRUD de dados

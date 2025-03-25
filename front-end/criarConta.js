@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
             indicadores: {
                 percentualGordura: form.percentualGordura.value,
                 glicose: form.glicose.value
-            }
+            },
+            nivelAtividadeFisica: form.nivelAtividadeFisica.value
         };
 
         // Enviar os dados via requisição POST para o back-end - o fetch serve como uma api para comunicar com o back-end
@@ -40,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
-        })  //o then eh executao apos a resposta do fetch -- entao, aninhando os then podendo ir tratando as diferentes e sequenciais etapas do processo
-        .then(response => response.json())
+        }) //quando eh feita uma requisicao com fetch, ele retorna uma Promise, o then eh usado para executar acoes somente apos a resposta chegar 
+        .then(response => response.json()) //cada then recebe como argumento a resposta da Promisse anterior
         .then(data => {
             console.log("Sucesso:", data);
             alert("Conta criada com sucesso!");
