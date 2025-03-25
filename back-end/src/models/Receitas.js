@@ -4,8 +4,8 @@ const ReceitasSchema = new mongoose.Schema({
     nome: { type: String, required: true }, // Nome da receita
     descricao: { type: String }, // Descrição opcional
     tempoPreparo: { type: Number, required: true }, // Tempo em minutos
-    porcoes: { type: Number, required: true }, // Quantidade de porções
-    quantidadeCalorias: { type: Number, required: true},
+    porcoes: { type: Number}, // Quantidade de porções
+    quantidadeCalorias: { type: Number},
     //array de objetos - cada receita pode ter um numero diferente de ingredientes
     ingredientes: [
         {

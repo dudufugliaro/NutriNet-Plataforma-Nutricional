@@ -1,36 +1,41 @@
-import ModelReceitas from "../models/Receitas";
+import ModelReceitas from "../models/Receitas.js";
 
 class ReceitasController {
     
-    static async getReceitas (req,res) {
-        try{
+    static async getReceitas (req, res) {
+        try {
             const receitas = await ModelReceitas.find({});
             res.status(200).json(receitas);
-
-        } catch(error){
-            res.status(500).json({message: '${erro.message} - falha ao resgatar Receitas'});
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - falha ao resgatar Receitas`});
         }
     }
 
     static async postReceitas (req, res) {
-        try{
+        try {
+            console.log("Recebendo dados:", req.body);
+
+            // Validação básica no backend
+            if (!req.body.nome || !req.body.tempoPreparo || req.body.ingredientes.length === 0 || !req.body.instrucoes) {
+                return res.status(400).json({ error: "Preencha todos os campos obrigatórios corretamente." });
+            }
+
             const newReceita = await ModelReceitas.create(req.body);
-            console.log(req.body);
-            req.status(201).json({message: "receita criada com sucesso", Receita: newReceita});
-        } catch(error){
-            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receit'});
+            res.status(201).json({ message: "Receita criada com sucesso!", receita: newReceita });
+
+        } catch (error) {
+            console.error("Erro ao salvar no banco:", error);
+            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receita'});
         }
     }
     
     static async getReceitasPeloNome (req, res) {
         const nomeReceita = req.query.nome;
-        try{
-            //para buscar por mais atributos, basta adicionar no argumento do find
-            const Receita = await ModelReceitas.find({nome: nomeReceita});
-            console.log(Receita);
-            res.status(200).json();    
-        } catch(erro){
-            res.status(500).json({message: '${erro.message} - falha ao buscar Receitas pelo nome'});
+        try {
+            const receita = await ModelReceitas.find({ nome: nomeReceita });
+            res.status(200).json(receita);
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - falha ao buscar Receitas pelo nome`});
         }
     }
 };
