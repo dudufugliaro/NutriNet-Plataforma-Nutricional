@@ -38,3 +38,30 @@
   --bs-gradient: none;
 }
 
+.container-receitas {
+  display: flex; /* Ativa o flexbox */
+  flex-wrap: wrap; /* Permite quebrar linha se necessário */
+  gap: 20px; /* Espaçamento entre os elementos */
+  justify-content: flex-start; /* Alinha horizontalmente */
+  padding: 20px;
+  overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+}
+
+/* Estilizando cada receita */
+.receita {
+  width: 300px; /* Define um tamanho fixo */
+  min-width: 250px; /* Evita que fiquem muito pequenas */
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+
+.receita:hover {
+  transform: scale(1.15); /* Efeito de zoom ao passar o mouse */
+}
+
+
