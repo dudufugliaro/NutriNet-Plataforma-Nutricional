@@ -2,7 +2,7 @@
 //adicionar um Event Listener, com DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
     const inputNomeBusca = document.getElementById("nome-usuario-busca");
-    const botaoBuscaDadosPeloNome = document.getElementById("botao-busca-dados-pelo-nome")
+    const botaoBuscaDadosPeloNome = document.getElementById("botao-busca-dados-pelo-nome");
 
     //O DOM transforma o HTML em uma arvore de elementos e isso permite que o JavaScript entre para adicionar a interacao
     //na pagina

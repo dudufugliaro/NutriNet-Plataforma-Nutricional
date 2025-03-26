@@ -2,7 +2,13 @@
 //adicionar um Event Listener, com DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
 
-    botaoBuscaReceitasPeloNome = document.getElementById("botao-busca-receitas-pelo-nome");
+    botaoBuscaReceitasPeloNome = document.getElementById("botao-buscar-receita-pelo-nome");
+    inputNomeReceita = document.getElementById("input-nome-receita");
+
+    if (!botaoBuscaReceitasPeloNome || !inputNomeReceita) {
+        console.error("Erro: Elementos HTML não encontrados.");
+        return;
+    }
     
     function preencherReceitas(receitas) {
         const container = document.getElementById("container-receitas");
@@ -39,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     botaoBuscaReceitasPeloNome.addEventListener("click", function (event) {
         event.preventDefault(); // Evita recarregar a página
-        let url = `http://localhost:3000/DadosNutricionais/busca?nome=${encodeURIComponent(nomeBusca)}`;
+        nomeReceita = inputNomeReceita.value;
+        let url = `http://localhost:3000/Receitas/busca?nome=${encodeURIComponent(nomeReceita)}`;
         fetch(url, {  
             method: "GET",
             headers: {
@@ -48,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })  //o then eh executao apos a resposta do fetch -- entao, aninhando os then podendo ir tratando as diferentes e sequenciais etapas do processo
         .then(response => response.json())
         .then(data => {
+            console.log("receita encontrada: ", data);
+            alert("Receitas buscadas com sucesso");
             preencherReceitas(data);
         })
         .catch(error => {
