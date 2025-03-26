@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     botaoLogout.addEventListener("click", function () {
         // Remover o item 'nutricionista' do localStorage
-        localStorage.removeItem("nutricionista");
+        localStorage.removeItem("usuario");
 
         // Redirecionar para a página de login (ou outra página)
         window.location.href = "initial.html";
