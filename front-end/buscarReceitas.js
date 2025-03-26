@@ -1,0 +1,60 @@
+//o document ja exite sem declarar ou criar nada, o proprio navegador cria este objeto e ele fica disponivel globalmente para qualquer script
+//adicionar um Event Listener, com DOMContentLoaded
+document.addEventListener("DOMContentLoaded", function () {
+
+    botaoBuscaReceitasPeloNome = document.getElementById("botao-busca-receitas-pelo-nome");
+    
+    function preencherReceitas(receitas) {
+        const container = document.getElementById("container-receitas");
+        container.innerHTML = ""; // Limpa antes de adicionar novas receitas
+    
+        receitas.forEach(receita => {
+            const divReceita = document.createElement("div");
+            divReceita.classList.add("receita");
+    
+            divReceita.innerHTML = `
+                <h2>${receita.nome}</h2>
+                <p><strong>Descrição:</strong> ${receita.descricao || "Sem descrição"}</p>
+                <p><strong>Tempo de preparo:</strong> ${receita.tempoPreparo} minutos</p>
+                <p><strong>Porções:</strong> ${receita.porcoes}</p>
+                <p><strong>Calorias:</strong> ${receita.quantidadeCalorias} kcal</p>
+    
+                <h3>Ingredientes:</h3>
+                <ul>
+                    ${receita.ingredientes.map(ingrediente => `<li>${ingrediente.quantidade} de ${ingrediente.nome}</li>`).join("")}
+                </ul>
+    
+                <h3>Instruções:</h3>
+                <p>${receita.instrucoes}</p>
+    
+                <p><strong>Categoria:</strong> ${receita.categoria || "Sem categoria"}</p>
+                <p><em>Criado em: ${new Date(receita.dataCriacao).toLocaleDateString()}</em></p>
+            `;
+    
+            container.appendChild(divReceita);
+        });
+    }  
+
+       
+
+    botaoBuscaReceitasPeloNome.addEventListener("click", function (event) {
+        event.preventDefault(); // Evita recarregar a página
+        let url = `http://localhost:3000/DadosNutricionais/busca?nome=${encodeURIComponent(nomeBusca)}`;
+        fetch(url, {  
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })  //o then eh executao apos a resposta do fetch -- entao, aninhando os then podendo ir tratando as diferentes e sequenciais etapas do processo
+        .then(response => response.json())
+        .then(data => {
+            preencherReceitas(data);
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert("Erro ao buscar receitas pelo nome");
+        });
+    });
+
+    
+});

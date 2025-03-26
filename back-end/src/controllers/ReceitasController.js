@@ -1,4 +1,4 @@
-import ModelReceitas from "../models/Receitas";
+import ModelReceitas from "../models/Receitas.js";
 
 class ReceitasController {
     
@@ -18,7 +18,7 @@ class ReceitasController {
             console.log(req.body);
             req.status(201).json({message: "receita criada com sucesso", Receita: newReceita});
         } catch(error){
-            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receit'});
+            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receita'});
         }
     }
     
