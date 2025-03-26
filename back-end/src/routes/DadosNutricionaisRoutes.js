@@ -13,4 +13,5 @@ routes.get("/DadosNutricionais/:id", DadosNutricionaisController.getDadosNutrici
 routes.put("/DadosNutricionais/:id", DadosNutricionaisController.putDadosNutricionais);
 routes.delete("/DadosNutricionais/:id", DadosNutricionaisController.deleteDadosNutricionais);
 
+routes.post("/DadosNutricionais/login", DadosNutricionaisController.loginUsuario);
 export default routes;

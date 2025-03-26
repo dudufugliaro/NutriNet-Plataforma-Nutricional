@@ -76,6 +76,24 @@ class DadosNutricionaisController {
         }
     }
 
+    static async loginUsuario(req, res) {
+            try {
+                console.log("Recebendo requisição de login...");
+                console.log("Body recebido:", req.body);
+                const { email, senha } = req.body;
+                const user = await ModelDadosNutricionais.findOne({ email, senha });
+                
+                if (!user) {
+                    console.log("Credenciais nao batem")
+                    return res.status(401).json({ message: "Credenciais inválidas." });
+                }
+                console.log("Credenciais encontradas...")
+                res.status(200).json({ message: "Login realizado com sucesso!", user });
+            } catch (error) {
+                res.status(500).json({ message: `${error.message} - Falha ao realizar login.` });
+            }
+        }
+
 
 };
 

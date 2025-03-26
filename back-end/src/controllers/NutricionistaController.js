@@ -78,13 +78,16 @@ class NutricionistaController {
     // Login de nutricionista (busca por email e senha)
     static async loginNutricionista(req, res) {
         try {
+            console.log("Recebendo requisição de login...");
+            console.log("Body recebido:", req.body);
             const { email, senha } = req.body;
             const nutricionista = await ModelNutricionista.findOne({ email, senha });
             
             if (!nutricionista) {
+                console.log("Credenciais nao batem")
                 return res.status(401).json({ message: "Credenciais inválidas." });
             }
-
+            console.log("Credenciais encontradas...")
             res.status(200).json({ message: "Login realizado com sucesso!", nutricionista });
         } catch (error) {
             res.status(500).json({ message: `${error.message} - Falha ao realizar login.` });
