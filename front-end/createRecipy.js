@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const responseData = await response.json();
-            alert(`Receita "${responseData.receita.nome}" cadastrada com sucesso!`);
             console.log("Resposta do servidor:", responseData);
 
         } catch (error) {

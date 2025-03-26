@@ -5,4 +5,4 @@
 id_rsa
 id_dsa
 ./node_modules
-node_modules
+node_modules/

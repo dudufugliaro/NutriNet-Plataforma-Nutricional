@@ -12,21 +12,30 @@ class ReceitasController {
     }
 
     static async postReceitas (req, res) {
-        try {
-            console.log("Recebendo dados:", req.body);
+            // Verifique os dados recebidos
+            console.log("Dados recebidos:", req.body);
 
-            // Validação básica no backend
+            // Validação básica
             if (!req.body.nome || !req.body.tempoPreparo || req.body.ingredientes.length === 0 || !req.body.instrucoes) {
                 return res.status(400).json({ error: "Preencha todos os campos obrigatórios corretamente." });
             }
 
-            const newReceita = await ModelReceitas.create(req.body);
-            console.log(req.body);
-            req.status(201).json({message: "receita criada com sucesso", Receita: newReceita});
-        } catch(error){
-            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receit'});
-        }
+            // Criar uma nova receita
+            const novaReceita = await ModelReceitas.create(req.body);
+
+            // Enviar resposta de sucesso
+            return res.status(201).json({
+                message: "Receita criada com sucesso",
+                Receita: novaReceita
+            });
+
+        } catch (erro) {
+            console.error("Erro no servidor:", erro);  // Verifique o erro no servidor
+            return res.status(500).json({
+                message: `Erro no servidor: ${erro.message} - falha ao cadastrar Receita`,
+            });
     }
+    
     
     static async getReceitasPeloNome (req, res) {
         const nomeReceita = req.query.nome;
