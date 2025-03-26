@@ -21,23 +21,10 @@ class ReceitasController {
             }
 
             const newReceita = await ModelReceitas.create(req.body);
-<<<<<<< HEAD
-<<<<<<< HEAD
             console.log(req.body);
             req.status(201).json({message: "receita criada com sucesso", Receita: newReceita});
         } catch(error){
-=======
-=======
->>>>>>> 2e66b6762448a81bfd5626ffadb58c64c072bd72
-            res.status(201).json({ message: "Receita criada com sucesso!", receita: newReceita });
-
-        } catch (error) {
-            console.error("Erro ao salvar no banco:", error);
-<<<<<<< HEAD
->>>>>>> 2e66b6762448a81bfd5626ffadb58c64c072bd72
-=======
->>>>>>> 2e66b6762448a81bfd5626ffadb58c64c072bd72
-            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receita'});
+            res.status(500).json({message: '${erro.message} - falha ao cadastrar Receit'});
         }
     }
     
