@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             <tr><td>Peso</td><td>${recente.peso + " kg" || "N/A"}</td><td>${calcularVariacao(recente.peso, anterior.peso)}</td></tr>
             <tr><td>Pressão sanguínea</td><td>${recente.pressao + " mmHg" || "N/A"}</td><td>${calcularVariacao(recente.pressao, anterior.pressao)}</td></tr>
             <tr><td>Glicose</td><td>${recente.glicose + "mg/dL" || "N/A"}</td><td>${calcularVariacao(recente.glicose, anterior.glicose)}</td></tr>
-            <tr><td>Gordura (%)</td><td>${recente.gordura*100 + "%" || "N/A"}</td><td>${calcularVariacao(recente.gordura, anterior.gordura)}</td></tr>
+            <tr><td>Gordura (%)</td><td>${recente.gordura + "%" || "N/A"}</td><td>${calcularVariacao(recente.gordura, anterior.gordura)}</td></tr>
         `;
 
         // Calcular e exibir o IMC
