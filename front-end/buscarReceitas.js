@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     botaoBuscaReceitasPeloNome = document.getElementById("botao-buscar-receita-pelo-nome");
     inputNomeReceita = document.getElementById("input-nome-receita");
 
+    botaoBuscaReceitasPeloTempoPreparo = document.getElementById("botao-buscar-receitas-pelo-tempopreparo");
+    inputtempoPreparo = document.getElementById("input-tempopreparo-receita");
+
+    inputCalorias = document.getElementById("input-calorias-receita");
+    botaoBuscaReceitasPelasCalorias = document.getElementById("botao-buscar-receitas-por-calorias");
+
     if (!botaoBuscaReceitasPeloNome || !inputNomeReceita) {
         console.error("Erro: Elementos HTML não encontrados.");
         return;
@@ -46,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     botaoBuscaReceitasPeloNome.addEventListener("click", function (event) {
         event.preventDefault(); // Evita recarregar a página
         nomeReceita = inputNomeReceita.value;
-        let url = `http://localhost:3000/Receitas/busca?nome=${encodeURIComponent(nomeReceita)}`;
+        let url = `http://localhost:3000/Receitas/busca-nome?nome=${encodeURIComponent(nomeReceita)}`;
         fetch(url, {  
             method: "GET",
             headers: {
@@ -57,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             console.log("receita encontrada: ", data);
             alert("Receitas buscadas com sucesso");
+            document.querySelectorAll("input").forEach(input => input.value = "");
             preencherReceitas(data);
         })
         .catch(error => {
@@ -64,6 +71,55 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Erro ao buscar receitas pelo nome");
         });
     });
+
+    botaoBuscaReceitasPeloTempoPreparo.addEventListener("click", function (event) {
+        event.preventDefault(); // Evita recarregar a página
+        tempo = inputtempoPreparo.value;
+        console.log(tempo);
+        let url = `http://localhost:3000/Receitas/busca-tempo?tempo=${encodeURIComponent(tempo)}`;
+        fetch(url, {  
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })  //o then eh executao apos a resposta do fetch -- entao, aninhando os then podendo ir tratando as diferentes e sequenciais etapas do processo
+        .then(response => response.json())
+        .then(data => {
+            alert("Receitas buscadas com sucesso");
+            document.querySelectorAll("input").forEach(input => input.value = "");
+            preencherReceitas(data);
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert("Erro ao buscar receitas pelo tempo de preparo");
+        });
+    });
+
+    botaoBuscaReceitasPelasCalorias.addEventListener("click", function (event) {
+        event.preventDefault(); // Evita recarregar a página
+        calorias = inputCalorias.value;
+        console.log(calorias);
+        let url = `http://localhost:3000/Receitas/busca-calorias?calorias=${encodeURIComponent(calorias)}`;
+        fetch(url, {  
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })  //o then eh executao apos a resposta do fetch -- entao, aninhando os then podendo ir tratando as diferentes e sequenciais etapas do processo
+        .then(response => response.json())
+        .then(data => {
+            console.log("receita encontrada: ", data);
+            alert("Receitas buscadas com sucesso");
+            document.querySelectorAll("input").forEach(input => input.value = "");
+            preencherReceitas(data);
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert("Erro ao buscar receitas pelas calorias");
+        });
+    });
+
+
 
     
 });

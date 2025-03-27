@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tempoPreparoInput = document.getElementById('tempopreparo');
     const instrucoesInput = document.getElementById('instrucoes');
     const botaoCriarReceita = document.getElementById('btCreateReceita');
+    const inputCalorias = document.getElementById("calorias");
 
     botaoCriarReceita.addEventListener('click', async () => {
         try {
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (ingredientes.length === 0) {
                 throw new Error("Adicione pelo menos um ingrediente");
             }
-
+            console.log("calorias inserias:", inputCalorias.value);
             // Preparar objeto para envio
             const receitaData = {
                 nome: nomeReceitaInput.value.trim(),
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ingredientes,
                 instrucoes: instrucoesInput.value.trim(),
                 porcoes: 1, // Valor padrão
-                quantidadeCalorias: 0 // Valor padrão
+                quantidadeCalorias: inputCalorias.value // Valor padrão
             };
 
             console.log("Enviando dados:", receitaData);
@@ -63,7 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const serverMessage = responseData.message || responseData.error || "Erro desconhecido no servidor";
                 throw new Error(`Servidor respondeu com erro: ${serverMessage} (status ${response.status})`);
             }
-
+            alert("Receita criada com sucesso");
+            //limpa todos os inputs da pagina
+            document.querySelectorAll("input").forEach(input => input.value = "");
             const responseData = await response.json();
             console.log("Resposta do servidor:", responseData);
 

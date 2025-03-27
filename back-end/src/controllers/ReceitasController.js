@@ -46,6 +46,27 @@ class ReceitasController {
             res.status(500).json({message: `${error.message} - falha ao buscar Receitas pelo nome`});
         }
     }
+
+    static async getReceitasPeloTempoPreparo (req, res) {
+        const tempo = req.query.tempo;
+        try {
+            const receita = await ModelReceitas.find({ tempoPreparo: tempo });
+            res.status(200).json(receita);
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - falha ao buscar Receitas pelo tempo de preparo`});
+        }
+    }
+
+    static async getReceitasPelasCalorias (req, res) {
+        const calorias = req.query.calorias;
+        try {
+            const receita = await ModelReceitas.find({ quantidadeCalorias: calorias });
+            res.status(200).json(receita);
+        } catch (error) {
+            res.status(500).json({message: `${error.message} - falha ao buscar Receitas pelas calorias`});
+        }
+    }
+    
 };
 
 export default ReceitasController;
