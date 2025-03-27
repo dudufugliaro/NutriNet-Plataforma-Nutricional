@@ -25,22 +25,30 @@ class PlanoAlimentarController{
     static async postPlanoAlimentar(req, res) {
         try{
             // 📌 Extrai o ID do usuário e os dados do plano do corpo da requisição
-            const { usuarioId, ...PlanoAlimentar } = req.body;
+            const { nomeUsuario, ...PlanoAlimentar } = req.body;
 
-            // 📌 Verifica se o usuário existe antes de criar o plano
-            const usuario = await ModelDadosNutricionais.findById(usuarioId);
-            if (!usuario) {
-                return res.status(404).json({ message: "Usuário não encontrado" });
-            }
+            const planoConvertido = {
+                caloriasDiarias: Number(PlanoAlimentar.caloriasDiarias),
+                proteinasDiarias: Number(PlanoAlimentar.proteinasDiarias),
+                carboidratosDiarios: Number(PlanoAlimentar.carboidratosDiarios),
+                gordurasDiarias: Number(PlanoAlimentar.gordurasDiarias),
+                objetivo: PlanoAlimentar.objetivo,
+                dataInicio: new Date(PlanoAlimentar.dataInicio),
+                dataFim: new Date(PlanoAlimentar.dataFim),
+            };
 
-            const novoPlanoAlimentar = await ModelPlanoAlimentar.create(PlanoAlimentar);
-            await ModelDadosNutricionais.findByIdAndUpdate(usuarioId, { planoalimentar: novoPlanoAlimentar._id });
+            const novoPlanoAlimentar = await ModelPlanoAlimentar.create(planoConvertido);
 
-             // 📌 Responde com sucesso
+            const dadosNutricionaisAtualizados = await ModelDadosNutricionais.findOneAndUpdate(
+                { nome: nomeUsuario},
+                {$set: {planoalimentar: novoPlanoAlimentar._id} },
+                {new: true}
+            );
+            console.log(dadosNutricionaisAtualizados);
+            
             res.status(201).json({
                 message: "Plano Alimentar criado e associado com sucesso!",
                 PlanoAlimentar: novoPlanoAlimentar,
-                UsuarioAtualizado: usuario
             });
 
         } catch(erro){
