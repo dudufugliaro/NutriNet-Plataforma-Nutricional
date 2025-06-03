@@ -1,4 +1,4 @@
-# 📌 Projeto Web com MongoDB
+# 📌 Projeto Web com  BootStrap, HTML, CSS, JavaScript, Node.js, Express e MongoDB
 
 ## 📖 Descrição
 Este é um projeto web desenvolvido com Node.js e MongoDB, que permite aos usuários criarem contas, armazenarem dados nutricionais e acessarem essas informações posteriormente. Ele utiliza uma arquitetura back-end baseada na tecnologia **NodeJS** e um banco de dados **MongoDB** para armazenar os dados.
@@ -7,6 +7,7 @@ Este é um projeto web desenvolvido com Node.js e MongoDB, que permite aos usuá
 - **Node.js** - Ambiente de execução JavaScript
 - **MongoDB** - Banco de dados NoSQL
 - **Mongoose** - ODM para interagir com o MongoDB
+- **Express** - Controle de rotas
 - **JavaScript** - Linguagem principal do projeto
 - **HTML + CSS** - Interface do usuário
 
@@ -30,15 +31,15 @@ Este é um projeto web desenvolvido com Node.js e MongoDB, que permite aos usuá
 ## ⚙️ Instalação e Execução
 ### **1️⃣ Clonar o repositório**
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
-cd seu-projeto
+git clone https://github.com/dudufugliaro/NutriNet-Plataforma-Nutricional.git
+cd NutriNet-Plataforma-Nutricional
 ```
 
 ### **2️⃣ Configurar e rodar o back-end**
 ```bash
 cd backend
 npm install
-npm start
+npm run dev
 ```
 
 ### **3️⃣ Configurar e rodar o front-end**
@@ -53,7 +54,7 @@ Abra o arquivo `initial.html` no navegador ou utilize um servidor local como o L
 ✅ Interface web interativa<br>
 
 ## 🛠️ Melhorias Futuras
-- Implementar autenticação JWT recomendável evitar a modificação excessiva do histórico de commits, uma vez que isso pode tornar o histórico confuso. O histórico deve ser uma representação precisa do progresso do projeto ao longo do tempo.
+- Implementar autenticação JWT
 - Criar dashboard interativo
 - Melhorar responsividade da interface
 
